@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  width: 100vw;
+  background-color: #121212;
+  border-bottom: 1px solid gray;
+
+  h3 {
+    color: white;
+  }
+}
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  background-color: #121212;
+
+  .center {
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-link-wrapper {
+    height: 40px;
+    margin-right: 20px;
+    text-transform: uppercase;
+
+    a {
+      color: gray;
+      text-decoration: none;
+    }
+  }
+}
