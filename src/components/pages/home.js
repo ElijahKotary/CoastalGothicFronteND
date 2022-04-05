@@ -1,11 +1,11 @@
 import React from "react";
-import SiteItem from "./SiteItem";
+import SiteContainer from "../itemsContainer/site-container";
 
 export default function Home() {
   return (
     <div className="home-wrapper">
       <h2>Full invitory</h2>
-      <div className="catalog-item-list">{<SiteItem />}</div>
+      <div className="catalog-item-list">{<SiteContainer />}</div>
     </div>
   );
 }

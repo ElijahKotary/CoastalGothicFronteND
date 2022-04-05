@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import CatalogItem from "./catalog-item";
 
-export default class SiteItems extends Component {
+export default class SiteItem extends Component {
   constructor() {
     super();
 
