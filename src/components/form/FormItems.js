@@ -1,18 +1,28 @@
 import React, { Component } from "react";
+import ImgUp from "./imgUp";
+import Axios from "axios";
 
 export default class AddItem extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      imageInput: "",
       nameInput: "",
       priceInput: "",
       loading: false,
       error: false,
     };
 
+    this.handleImage = this.handleImage.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleImage(event) {
+    this.setState({
+      imageInput: [event.target.response.data.url],
+    });
   }
 
   handleChange(event) {
@@ -27,22 +37,22 @@ export default class AddItem extends Component {
       error: false,
     });
 
-    fetch("https://capstone-example-backend.herokuapp.com/item/add", {
-      method: "POST",
+    Axios.post("https://capstone-coastal-gothic.herokuapp.com/product", {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
+        image: this.state.imageInput,
         name: this.state.nameInput,
-        price: parseFloat(this.state.priceInput),
+        price: this.state.priceInput,
       }),
     })
       .then((response) => response.json())
       .then((data) => {
         if (data.id) {
-          this.props.history.push("/items");
+          this.props.history.push("/product");
         }
       })
       .catch((error) => {
-        console.log("Error adding item ", error);
+        console.log("Error adding Products ", error);
 
         this.setState({
           loading: false,
@@ -53,10 +63,12 @@ export default class AddItem extends Component {
 
   render() {
     return (
-      <div className="add-item-wrapper">
-        <h2>Add Item</h2>
+      <div className="product-item-wrapper">
+        <ImgUp onLoad={this.handleImage} />
 
         <form onSubmit={this.handleSubmit}>
+          <input type="text" name="imageInput" value={this.state.image} />
+
           <input
             type="text"
             placeholder="name"
@@ -74,7 +86,7 @@ export default class AddItem extends Component {
           />
 
           <button type="submit" disabled={this.state.loading}>
-            Add Item
+            Add Product
           </button>
         </form>
 

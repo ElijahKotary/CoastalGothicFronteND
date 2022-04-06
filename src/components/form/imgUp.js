@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { Image } from "cloudinary-react";
 import Axios from "axios";
 
 export default function () {
@@ -14,7 +13,7 @@ export default function () {
       "https://api.cloudinary.com/v1_1/coastalgothic/image/upload",
       formData
     ).then((response) => {
-      console.log(response);
+      console.log(response.data.url);
     });
   };
 

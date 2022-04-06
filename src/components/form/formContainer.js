@@ -1,11 +1,11 @@
 import React from "react";
 
-import ImgUp from "./imgUp";
+import FormItems from "./FormItems";
 
 export default function () {
   return (
     <div className="form-wrapper">
-      <ImgUp />
+      <FormItems />
     </div>
   );
 }
