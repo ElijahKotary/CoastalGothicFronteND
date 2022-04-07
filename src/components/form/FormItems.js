@@ -86,15 +86,14 @@ export default class AddProduct extends Component {
         </button>
       </form>
     );
-    //     {this.state.loading ? (
-    //       <div className="loading">Submitting...</div>
-    //     ) : null}
+    {
+      this.state.loading ? <div className="loading">Submitting...</div> : null;
+    }
 
-    //     {this.state.error ? (
-    //       <div className="error">
-    //         An error occured... Please try again later.
-    //       </div>
-    //     ) : null}
-    // );
+    {
+      this.state.error ? (
+        <div className="error">An error occured... Please try again later.</div>
+      ) : null;
+    }
   }
 }
