@@ -3,17 +3,27 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 // import { faSquare, faCheckSquare } from '@fortawesome/free-regular-svg-icons'
 
-export default function AddProduct({ image, name, price, loading, error }) {
+export default function AddProduct({
+  image,
+  name,
+  price,
+  loading,
+  error,
+  setError,
+  setLoading,
+  handleSubmit,
+}) {
   const [imageUrlInput, setUrlInput] = useState("");
   const [imageInput, setImageInput] = useState(image || "");
   const [nameInput, setNameInput] = useState(name || "");
   const [priceInput, setPriceInput] = useState(price || "");
+  const [requiredError, setRequiredError] = useState();
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     setError("");
-    setRequiredError(false);
+    setRequiredError(true);
 
     const formattedImage = imageInput
       .trim()
@@ -29,14 +39,14 @@ export default function AddProduct({ image, name, price, loading, error }) {
 
     const formattedPrice = priceInput.trim();
 
-    let image = setImageSelected;
+    let image = setUrlInput;
     if (imageInput) {
-      const formData = new FormData();
-      formData.append("file", imageSelected);
-      formData.append("upload_preset", "coastal");
+      const form = new FormData();
+      form.append("file", imageInput);
+      form.append("upload_preset", "coastal");
 
       await fetch(
-        `https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_NAME}/image/upload`,
+        `https://api.cloudinary.com/v1_1/coastalgothic/image/upload`,
         {
           method: "POST",
           body: form,
@@ -49,7 +59,6 @@ export default function AddProduct({ image, name, price, loading, error }) {
             setError("An error occured... Please try again later.");
             setLoading(false);
           } else {
-            image = data.url;
             setUrlInput(data.url);
           }
         })
@@ -107,16 +116,7 @@ export default function AddProduct({ image, name, price, loading, error }) {
           </div>
         </label>
       </div>
-      <label>
-        Image
-        <input
-          type="text"
-          autoCorrect="off"
-          placeholder="*Required"
-          value={imageInput}
-          onChange={(event) => setImageInput(event.target.value)}
-        />
-      </label>
+
       <label>
         Name
         <input

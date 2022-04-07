@@ -14,8 +14,8 @@ export default function formProducts({ image, name, price }) {
       setSubmitForm(false);
       setSubmitFormData({});
       if (error === "") {
-        fetch("https://capstone-coastal-gothic.herokuapp.com/prodProducts", {
-          // https://capstone-coastal-gothic.herokuapp.com/prodProducts
+        fetch("https://capstone-coastal-gothic.herokuapp.com/products", {
+          // https://capstone-coastal-gothic.herokuapp.com/products
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
