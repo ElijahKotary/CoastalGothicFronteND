@@ -1,10 +1,11 @@
-import React from "react";
-import FormItems from "./FormItems";
+import React, { useState } from "react";
 
-export default function () {
+import ProductForm from "./productForm";
+
+export default function FormContainer() {
   return (
-    <div className="form-wrapper">
-      <FormItems />
+    <div className="form-container">
+      <ProductForm />
     </div>
   );
 }

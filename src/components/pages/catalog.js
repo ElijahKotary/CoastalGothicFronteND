@@ -1,11 +1,11 @@
 import React from "react";
-import FormContainer from "../form/formContainer";
+import FormProducts from "../form/formProducts";
 
 export default function () {
   return (
     <div>
       <h2>Catalog</h2>
-      <FormContainer />
+      <FormProducts/>
     </div>
   );
 }
