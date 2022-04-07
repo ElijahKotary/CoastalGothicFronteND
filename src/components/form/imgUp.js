@@ -15,6 +15,7 @@ export default function () {
     ).then((response) => {
       console.log(response.data.url);
     });
+    // return response.text()
   };
 
   return (

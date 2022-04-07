@@ -12,7 +12,7 @@ export default class Products extends Component {
   }
 
   componentDidMount() {
-    fetch("http://127.0.01:5000/products")
+    fetch("https://capstone-coastal-gothic.herokuapp.com/products")
       .then((response) => response.json())
       .then((data) => {
         this.setState({
