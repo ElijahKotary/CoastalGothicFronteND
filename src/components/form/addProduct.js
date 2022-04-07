@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
-// import { faSquare, faCheckSquare } from '@fortawesome/free-regular-svg-icons'
 
 export default function AddProduct({
   image,
@@ -46,7 +45,7 @@ export default function AddProduct({
       form.append("upload_preset", "coastal");
 
       await fetch(
-        `https://api.cloudinary.com/v1_1/coastalgothic/image/upload`,
+        "https://api.cloudinary.com/v1_1/coastalgothic/image/upload",
         {
           method: "POST",
           body: form,

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import AddProduct from "./addProduct";
 
-export default function formProducts({ image, name, price }) {
+export default function formProducts({ image, name, price, handleSubmit }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [submitForm, setSubmitForm] = useState(false);
@@ -14,8 +14,8 @@ export default function formProducts({ image, name, price }) {
       setSubmitForm(false);
       setSubmitFormData({});
       if (error === "") {
-        fetch("https://capstone-coastal-gothic.herokuapp.com/products", {
-          // https://capstone-coastal-gothic.herokuapp.com/products
+        fetch("https://coastalfrontend.herokuapp.com/", {
+          mode: "no-cors",
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
@@ -31,7 +31,7 @@ export default function formProducts({ image, name, price }) {
           .catch((error) => {
             setError("An error occured... Please try again later.");
             setLoading(false);
-            console.log("Error adding book: ", error);
+            console.log("Error adding product: ", error);
           });
       } else {
         setLoading(false);
@@ -44,10 +44,8 @@ export default function formProducts({ image, name, price }) {
     setSubmitForm(true);
   };
 
-  const handleCancel = () => setDisplay("bookcase");
-
   return (
-    <div className="add-book">
+    <div className="add-product">
       <AddProduct
         image={image}
         name={name}
