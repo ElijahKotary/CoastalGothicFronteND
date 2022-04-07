@@ -14,10 +14,8 @@ export default function FormProducts({ image, item, price, handleSubmit }) {
       setSubmitForm(false);
       setSubmitFormData({});
       if (error === "") {
-        fetch("https://coastal-gothic-757.herokuapp.com/product", {
-          mode: "no-cors",
+        fetch("http://127.0.0.1:5000/product", {
           method: "POST",
-          headers: { "content-type": "application/json" },
           body: JSON.stringify({
             image: addData.imageInput,
             item: addData.itemInput,

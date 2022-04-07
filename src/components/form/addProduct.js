@@ -57,9 +57,9 @@ export default function AddProduct({
     }
 
     handleSubmit({
-      imageInput: image,
-      itemInput: item,
-      priceInput: price,
+      imageInput: setImageInput,
+      itemInput: setItemInput,
+      priceInput: setPriceInput,
     });
   };
 
