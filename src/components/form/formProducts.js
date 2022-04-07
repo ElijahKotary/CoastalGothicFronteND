@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import AddProduct from "./addProduct";
 
-export default function formProducts({ image, name, price, handleSubmit }) {
+export default function FormProducts({ image, item, price, handleSubmit }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [submitForm, setSubmitForm] = useState(false);
@@ -14,13 +14,13 @@ export default function formProducts({ image, name, price, handleSubmit }) {
       setSubmitForm(false);
       setSubmitFormData({});
       if (error === "") {
-        fetch("https://coastalfrontend.herokuapp.com/", {
+        fetch("http://127.0.0.1:5000/product", {
           mode: "no-cors",
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
             image: addData.imageInput,
-            name: addData.nameInput,
+            item: addData.itemInput,
             price: addData.priceInput,
           }),
         })
@@ -45,10 +45,10 @@ export default function formProducts({ image, name, price, handleSubmit }) {
   };
 
   return (
-    <div className="add-product">
+    <div classitem="add-product">
       <AddProduct
         image={image}
-        name={name}
+        item={item}
         price={price}
         handleSubmit={handleAddSubmit}
         loading={loading}

@@ -1,9 +1,12 @@
 .home-wrapper {
+  height: 100vh;
   border: 1px solid gray;
 }
 
+.catalog-item-list {
+  height: 100vh;
+}
 .products-page-wrapper {
-  height:100vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   margin: 5px;
@@ -13,8 +16,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
 
-  img {
-    width: 100px;
-  }
+img {
+  width: 100px;
 }

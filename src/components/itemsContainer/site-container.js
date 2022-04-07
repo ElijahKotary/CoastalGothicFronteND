@@ -12,7 +12,7 @@ export default class Products extends Component {
   }
 
   componentDidMount() {
-    fetch("https://capstone-coastal-gothic.herokuapp.com/products")
+    fetch("http://127.0.0.1:5000/products")
       .then((response) => response.json())
       .then((data) => {
         this.setState({
@@ -33,7 +33,7 @@ export default class Products extends Component {
     const productsList = this.state.products.map((products) => (
       <div className="products" key={products.id}>
         <img src={products.image} />
-        <h3>{products.name}</h3>
+        <h3>{products.item}</h3>
         <p>${products.price}</p>
       </div>
     ));

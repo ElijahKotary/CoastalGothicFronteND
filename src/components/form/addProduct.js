@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import Axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 export default function AddProduct({
   image,
-  name,
+  item,
   price,
   loading,
   error,
@@ -12,9 +13,9 @@ export default function AddProduct({
   setLoading,
   handleSubmit,
 }) {
-  const [imageUrlInput, setUrlInput] = useState("");
+  const [imageUrlInput, setImageUrlInput] = useState("");
   const [imageInput, setImageInput] = useState(image || "");
-  const [nameInput, setNameInput] = useState(name || "");
+  const [itemInput, setItemInput] = useState(item || "");
   const [priceInput, setPriceInput] = useState(price || "");
   const [requiredError, setRequiredError] = useState();
 
@@ -22,23 +23,9 @@ export default function AddProduct({
     event.preventDefault();
 
     setError("");
-    setRequiredError(true);
+    setRequiredError(false);
 
-    const formattedImage = imageInput
-      .trim()
-      .split(" ")
-      .map((word) => (word !== "" ? word[0].toUpperCase() + word.slice(1) : ""))
-      .join(" ");
-
-    const formattedName = nameInput
-      .trim()
-      .split(" ")
-      .map((word) => (word !== "" ? word[0].toUpperCase() + word.slice(1) : ""))
-      .join(" ");
-
-    const formattedPrice = priceInput.trim();
-
-    let image = setUrlInput;
+    let image = imageUrlInput;
     if (imageInput) {
       const form = new FormData();
       form.append("file", imageInput);
@@ -58,20 +45,21 @@ export default function AddProduct({
             setError("An error occured... Please try again later.");
             setLoading(false);
           } else {
-            setUrlInput(data.url);
+            image = data.url;
+            setImageUrlInput(data.url);
           }
         })
         .catch((error) => {
           setError("An error occured... Please try again later.");
           setLoading(false);
-          console.log("Error adding shelf: ", error);
+          console.log("Error adding product: ", error);
         });
     }
 
     handleSubmit({
-      imageInput: formattedImage,
-      nameInput: formattedName,
-      priceInput: formattedPrice,
+      imageInput: image,
+      itemInput: item,
+      priceInput: price,
     });
   };
 
@@ -92,19 +80,17 @@ export default function AddProduct({
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <div className="image-wrapper">
+      <div classitem="image-wrapper">
         <label>
           Upload Image
           <img src={imageInput ? imageInput : imageUrlInput} alt="" />
-        </label>
-        <label>
           <input
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
             style={{ display: "none" }}
           />
-          <div className="options-wrapper">
+          <div classitem="options-wrapper">
             <FontAwesomeIcon icon={faUpload} />
             {imageInput ? (
               <FontAwesomeIcon
@@ -117,35 +103,32 @@ export default function AddProduct({
       </div>
 
       <label>
-        Name
+        item
         <input
           type="text"
-          autoCorrect="off"
           placeholder="*Required"
-          value={nameInput}
-          onChange={(event) => setNameInput(event.target.value)}
+          value={itemInput}
+          onChange={(event) => setItemInput(event.target.value)}
         />
       </label>
       <label>
         Price
         <input
           type="text"
-          autoCorrect="off"
           placeholder="*Required"
           value={priceInput}
           onChange={(event) => setPriceInput(event.target.value)}
         />
       </label>
 
-      <div className="options-wrapper">
+      <div classitem="options-wrapper">
         <button type="submit" disabled={loading}>
           Submit
         </button>
       </div>
-
-      <div className="error-loading">
+      <div classitem="error-loading">
         {error}
-        {loading ? <img src={loadingImg} /> : null}
+        {loading}
       </div>
     </form>
   );

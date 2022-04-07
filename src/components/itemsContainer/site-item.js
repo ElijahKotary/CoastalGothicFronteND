@@ -5,7 +5,7 @@ export default class Items extends Component {
     super(props);
 
     this.state = {
-      items: [],
+      products: [],
       loading: true,
       error: false,
     };
@@ -16,7 +16,7 @@ export default class Items extends Component {
       .then((response) => response.json())
       .then((data) => {
         this.setState({
-          items: data,
+          products: data,
           loading: false,
         });
       })
@@ -30,21 +30,21 @@ export default class Items extends Component {
   }
 
   renderItems() {
-    const itemsHtml = this.state.items.map((item) => (
-      <div className="item-wrapper" key={item.id}>
-        <h3>{item.name}</h3>
-        <p>${item.price.toFixed(2)}</p>
+    const productsHtml = this.state.products.map((product) => (
+      <div className="item-wrapper" key={product.id}>
+        <h3>{product.name}</h3>
+        <p>${product.price.toFixed(2)}</p>
       </div>
     ));
 
-    return itemsHtml;
+    return productsHtml;
   }
 
   render() {
     if (this.state.loading) {
       return (
-        <div className="items-page-wrapper">
-          <div className="items-wrapper">
+        <div className="products-page-wrapper">
+          <div className="products-wrapper">
             <div className="loading">Loading...</div>
           </div>
         </div>
