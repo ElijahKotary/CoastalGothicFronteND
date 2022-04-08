@@ -14,7 +14,7 @@ export default function FormProducts({ image, item, price, handleSubmit }) {
       setSubmitForm(false);
       setSubmitFormData({});
       if (error === "") {
-        fetch("https://coastalapi.herokuapp.com/", {
+        fetch("https://coastalapi.herokuapp.com/product", {
           method: "POST",
           body: JSON.stringify({
             image: addData.imageUrlInput,

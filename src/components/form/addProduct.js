@@ -12,7 +12,7 @@ export default function AddProduct({
   setLoading,
   handleSubmit,
 }) {
-  const [imageUrlInput, setImageUrlInput] = useState(image|| "");
+  const [imageUrlInput, setImageUrlInput] = useState(image || "");
   const [itemInput, setItemInput] = useState(item || "");
   const [priceInput, setPriceInput] = useState(price || "");
   const [imageInput, setImageInput] = useState(null);
@@ -44,7 +44,7 @@ export default function AddProduct({
             setError("An error occured... Please try again later.");
             setLoading(false);
           } else {
-            imageFile = data.url;
+            image = data.url;
             setImageUrlInput(data.url);
           }
         })
