@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,10 +12,10 @@ export default function AddProduct({
   setLoading,
   handleSubmit,
 }) {
-  const [imageUrlInput, setImageUrlInput] = useState("");
-  const [imageInput, setImageInput] = useState(image || "");
+  const [imageUrlInput, setImageUrlInput] = useState(image|| "");
   const [itemInput, setItemInput] = useState(item || "");
   const [priceInput, setPriceInput] = useState(price || "");
+  const [imageInput, setImageInput] = useState(null);
   const [requiredError, setRequiredError] = useState();
 
   const handleFormSubmit = async (event) => {
@@ -45,7 +44,7 @@ export default function AddProduct({
             setError("An error occured... Please try again later.");
             setLoading(false);
           } else {
-            image = data.url;
+            imageFile = data.url;
             setImageUrlInput(data.url);
           }
         })
@@ -57,7 +56,7 @@ export default function AddProduct({
     }
 
     handleSubmit({
-      imageInput: setImageInput,
+      imageInput: setImageUrlInput,
       itemInput: setItemInput,
       priceInput: setPriceInput,
     });
